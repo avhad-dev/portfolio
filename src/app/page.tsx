@@ -1,24 +1,13 @@
+import HeroScene from "@/components/hero/HeroScene";
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. Hero — living system */}
-      <section className="relative flex items-center justify-center min-h-screen bg-background">
-        {/* Placeholder for React Three Fiber canvas */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-20">
-          <p className="font-mono text-sm">[WebGL Canvas Placeholder]</p>
-        </div>
-        
-        <div className="z-10 flex flex-col items-center gap-8 text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-serif tracking-tight">Software Developer</h1>
-          <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">Creative Engineering</p>
-          <button className="mt-12 px-6 py-3 border border-foreground/20 hover:border-foreground/50 transition-colors font-mono text-sm uppercase tracking-wider">
-            Initialize
-          </button>
-        </div>
-      </section>
+      <HeroScene />
 
       {/* 2. About — stream of thought */}
-      <section className="py-32 px-8 md:px-24">
+      <section id="about" className="py-32 px-8 md:px-24">
         <div className="max-w-4xl mx-auto space-y-16">
           <h2 className="text-3xl md:text-5xl font-serif leading-tight">
             [Placeholder statement about engineering philosophy, product thinking, and approach to software.]
