@@ -64,7 +64,7 @@ function MarqueeRow({ items, direction = "left", speed = 0.5 }: MarqueeRowProps)
                 key={`${item}-${index}`}
                 aria-hidden={isAriaHidden}
                 tabIndex={!isAriaHidden ? 0 : -1}
-                className="text-6xl md:text-8xl lg:text-9xl font-serif italic tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(242,240,234,0.3)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
+                className="text-5xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(242,240,234,0.5)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
               >
                 {item}
               </span>
@@ -80,7 +80,7 @@ export default function ArsenalSection() {
   return (
     <section className="py-32 overflow-hidden border-t border-foreground/10 bg-background">
       <div className="max-w-6xl mx-auto px-8 md:px-24 mb-16">
-        <p className="font-mono text-sm uppercase tracking-widest text-foreground/60">02 / Technical Arsenal</p>
+        <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">03 / Technical Arsenal</p>
       </div>
       
       <div className="flex flex-col gap-8 md:gap-16">

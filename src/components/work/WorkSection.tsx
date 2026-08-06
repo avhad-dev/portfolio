@@ -98,26 +98,36 @@ export default function WorkSection() {
   return (
     <section className="relative py-32 px-8 md:px-24 border-t border-foreground/10">
       <div className="max-w-6xl mx-auto">
-        <p className="font-mono text-sm mb-16 uppercase tracking-widest text-foreground/60">01 / Selected Work</p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 md:mb-32 gap-8">
+          <div>
+            <p className="font-mono text-xs mb-6 uppercase tracking-widest text-foreground/50">02 / Selected Work</p>
+            <h2 className="text-5xl md:text-7xl font-serif tracking-tighter text-foreground">
+              Proof of Concept
+            </h2>
+          </div>
+          <p className="max-w-sm font-mono text-xs uppercase tracking-widest text-foreground/50 leading-relaxed text-left md:text-right">
+            Selected case studies demonstrating creative engineering and precise technical execution.
+          </p>
+        </div>
         
-        <div className="space-y-4">
+        <div className="border-b border-foreground/10">
           {projects.map((project) => (
             <div 
               key={project.id} 
-              className="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-foreground/10 hover:border-foreground/30 transition-colors cursor-pointer"
+              className="group flex flex-col lg:flex-row lg:items-baseline justify-between py-12 md:py-16 border-t border-foreground/10 hover:border-foreground/40 transition-colors cursor-pointer"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
               // For accessibility, showing inline on focus
               tabIndex={0}
             >
-              <h3 className="text-3xl md:text-5xl font-serif group-hover:italic transition-all duration-300">
+              <h3 className="text-4xl md:text-6xl font-serif tracking-tight group-hover:italic transition-all duration-300 mb-6 lg:mb-0">
                 {project.name}
               </h3>
               
-              <div className="flex flex-wrap items-center gap-4 md:gap-8 mt-4 md:mt-0 font-mono text-xs md:text-sm text-foreground/60">
-                <span>{project.year}</span>
+              <div className="flex flex-wrap items-center gap-6 md:gap-12 font-mono text-xs md:text-sm uppercase tracking-widest text-foreground/50">
                 <span>{project.role}</span>
                 <span className="hidden md:inline-block">{project.tech}</span>
+                <span>{project.year}</span>
               </div>
 
               {/* Mobile/Touch Inline Image (hidden on desktop hover) */}

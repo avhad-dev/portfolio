@@ -24,12 +24,17 @@ export default function AboutSection() {
   });
 
   // Map scroll progress to horizontal translation
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const x2 = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
+  const x3 = useTransform(scrollYProgress, [0, 1], ["5%", "-25%"]);
+  const x4 = useTransform(scrollYProgress, [0, 1], ["-25%", "5%"]);
+
+  const transforms = [x1, x2, x3, x4];
 
   // Calculate velocity for the skew effect
   const velocity = useVelocity(scrollYProgress);
   const smoothVelocity = useSpring(velocity, { damping: 50, stiffness: 400 });
-  const skewX = useTransform(smoothVelocity, [-0.5, 0.5], ["-5deg", "5deg"]);
+  const skewX = useTransform(smoothVelocity, [-0.5, 0.5], ["-3deg", "3deg"]);
 
   // Conditionally apply motion values based on viewport and accessibility preferences
   const shouldAnimate = isDesktop;
@@ -47,23 +52,28 @@ export default function AboutSection() {
       */}
       <div className="md:sticky md:top-0 w-full md:h-screen md:overflow-hidden flex flex-col justify-center py-32 px-8 md:px-0">
         
-        {/* Desktop Layout (Horizontal Scroll) */}
-        <motion.div 
-          className="hidden md:flex items-center gap-16 md:gap-32 px-8 md:px-24 whitespace-nowrap will-change-transform"
-          style={{ 
-            x: shouldAnimate ? x : 0, 
-            skewX: shouldSkew ? skewX : 0 
-          }}
-        >
+        {/* Section Context */}
+        <div className="absolute top-32 left-8 md:left-24 font-mono text-xs uppercase tracking-widest text-foreground/50 z-10">
+          01 / Philosophy
+        </div>
+
+        {/* Desktop Layout (Parallax Horizontal Scroll) */}
+        <div className="hidden md:flex flex-col justify-center gap-8 lg:gap-16 w-full h-full overflow-hidden will-change-transform">
           {statements.map((statement, index) => (
-            <h2 
-              key={index} 
-              className="text-4xl md:text-7xl lg:text-9xl font-serif leading-tight shrink-0 text-foreground"
+            <motion.div
+              key={index}
+              className="whitespace-nowrap px-8 md:px-24"
+              style={{
+                x: shouldAnimate ? transforms[index % transforms.length] : 0,
+                skewX: shouldSkew ? skewX : 0,
+              }}
             >
-              {statement}
-            </h2>
+              <h2 className={`text-5xl md:text-6xl lg:text-8xl font-serif tracking-tight ${index % 2 !== 0 ? "text-foreground/40 italic" : "text-foreground"}`}>
+                {statement}
+              </h2>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Mobile Layout (Vertical Stack) */}
         <div className="md:hidden max-w-4xl mx-auto space-y-24">
