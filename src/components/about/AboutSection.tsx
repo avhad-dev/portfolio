@@ -48,35 +48,34 @@ export default function AboutSection() {
       <div className="md:sticky md:top-0 w-full md:h-screen md:overflow-hidden flex flex-col justify-center py-32 px-8 md:px-0">
         
         {/* Desktop Layout (Horizontal Scroll) */}
-        {isDesktop ? (
-          <motion.div 
-            className="flex items-center gap-16 md:gap-32 px-8 md:px-24 whitespace-nowrap will-change-transform"
-            style={{ 
-              x: shouldAnimate ? x : 0, 
-              skewX: shouldSkew ? skewX : 0 
-            }}
-          >
-            {statements.map((statement, index) => (
-              <h2 
-                key={index} 
-                className="text-4xl md:text-7xl lg:text-9xl font-serif leading-tight shrink-0 text-foreground"
-              >
-                {statement}
-              </h2>
-            ))}
-          </motion.div>
-        ) : (
-          <div className="max-w-4xl mx-auto space-y-24">
-            {statements.map((statement, index) => (
-              <h2 
-                key={index} 
-                className={`text-4xl font-serif leading-tight ${index % 2 !== 0 ? "text-foreground/60" : "text-foreground"}`}
-              >
-                {statement}
-              </h2>
-            ))}
-          </div>
-        )}
+        <motion.div 
+          className="hidden md:flex items-center gap-16 md:gap-32 px-8 md:px-24 whitespace-nowrap will-change-transform"
+          style={{ 
+            x: shouldAnimate ? x : 0, 
+            skewX: shouldSkew ? skewX : 0 
+          }}
+        >
+          {statements.map((statement, index) => (
+            <h2 
+              key={index} 
+              className="text-4xl md:text-7xl lg:text-9xl font-serif leading-tight shrink-0 text-foreground"
+            >
+              {statement}
+            </h2>
+          ))}
+        </motion.div>
+
+        {/* Mobile Layout (Vertical Stack) */}
+        <div className="md:hidden max-w-4xl mx-auto space-y-24">
+          {statements.map((statement, index) => (
+            <h2 
+              key={index} 
+              className={`text-4xl font-serif leading-tight ${index % 2 !== 0 ? "text-foreground/60" : "text-foreground"}`}
+            >
+              {statement}
+            </h2>
+          ))}
+        </div>
       </div>
     </section>
   );
