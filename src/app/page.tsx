@@ -1,4 +1,5 @@
 import HeroScene from "@/components/hero/HeroScene";
+import AboutSection from "@/components/about/AboutSection";
 
 export default function Home() {
   return (
@@ -7,16 +8,7 @@ export default function Home() {
       <HeroScene />
 
       {/* 2. About — stream of thought */}
-      <section id="about" className="py-32 px-8 md:px-24">
-        <div className="max-w-4xl mx-auto space-y-16">
-          <h2 className="text-3xl md:text-5xl font-serif leading-tight">
-            [Placeholder statement about engineering philosophy, product thinking, and approach to software.]
-          </h2>
-          <h2 className="text-3xl md:text-5xl font-serif leading-tight text-foreground/60">
-            [Second statement elaborating on approach.]
-          </h2>
-        </div>
-      </section>
+      <AboutSection />
 
       {/* 3. Selected work — distortion gallery */}
       <section className="py-32 px-8 md:px-24 border-t border-foreground/10">
