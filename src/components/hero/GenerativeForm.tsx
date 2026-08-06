@@ -47,7 +47,7 @@ export default function GenerativeForm() {
   });
 
   return (
-    <Sphere ref={meshRef} args={[2.5, 128, 128]}>
+    <Sphere ref={meshRef} args={[2.5, 64, 64]}>
       <MeshDistortMaterial
         ref={materialRef}
         color="#F2F0EA"
@@ -55,7 +55,7 @@ export default function GenerativeForm() {
         distort={prefersReducedMotion ? 0 : 0.4}
         speed={prefersReducedMotion ? 0 : 1}
         transparent
-        opacity={0.05}
+        opacity={0.3}
       />
     </Sphere>
   );

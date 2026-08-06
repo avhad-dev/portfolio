@@ -2,8 +2,13 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import GenerativeForm from "./GenerativeForm";
+import dynamic from "next/dynamic";
 import { useLenis } from "lenis/react";
+
+// Dynamically import the heavy WebGL component (as per DESIGN.md constraints)
+const GenerativeForm = dynamic(() => import("./GenerativeForm"), {
+  ssr: false,
+});
 
 export default function HeroScene() {
   const lenis = useLenis();
@@ -12,7 +17,6 @@ export default function HeroScene() {
     if (lenis) {
       lenis.scrollTo("#about", { offset: 0, duration: 1.5 });
     } else {
-      // Fallback if Lenis is not available
       document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -25,6 +29,11 @@ export default function HeroScene() {
       {/* WebGL Canvas Background */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
+          {/* Add lighting so the MeshPhysicalMaterial (MeshDistortMaterial) can be seen */}
+          <ambientLight intensity={2} />
+          <directionalLight position={[10, 10, 5]} intensity={4} color="#F2F0EA" />
+          <directionalLight position={[-10, -10, -5]} intensity={1} color="#F2F0EA" />
+          
           <Suspense fallback={null}>
             <GenerativeForm />
           </Suspense>
