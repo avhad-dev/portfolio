@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <SmoothScroll>
           <div className="bg-noise fixed inset-0 z-50 pointer-events-none opacity-[0.04]"></div>
+          <SiteChrome />
           {children}
         </SmoothScroll>
       </body>

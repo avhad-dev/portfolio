@@ -19,6 +19,9 @@ export default function HeroScene() {
 
   return (
     <section className="relative flex items-center justify-center min-h-screen bg-background overflow-hidden">
+      {/* WebGL Fallback / Glow */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-foreground/10 via-background to-background" />
+
       {/* WebGL Canvas Background */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
@@ -28,30 +31,24 @@ export default function HeroScene() {
         </Canvas>
       </div>
 
-      {/* Editorial Overlay */}
-      <div className="z-10 flex flex-col items-center gap-8 text-center px-4 pointer-events-none">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif tracking-tight text-foreground drop-shadow-lg">
-          Software Developer
+      {/* Editorial Overlay - Asymmetrical */}
+      <div className="z-10 absolute bottom-16 md:bottom-24 left-8 md:left-24 max-w-2xl pointer-events-none">
+        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif tracking-tighter text-foreground drop-shadow-lg leading-[0.9]">
+          Software<br />Developer
         </h1>
-        <p className="font-mono text-sm md:text-base uppercase tracking-[0.3em] text-foreground/80 drop-shadow">
+      </div>
+
+      <div className="z-10 absolute bottom-16 md:bottom-24 right-8 md:right-24 flex flex-col items-end gap-6 text-right pointer-events-none">
+        <p className="font-mono text-xs md:text-sm uppercase tracking-[0.3em] text-foreground/80 drop-shadow">
           Creative Engineering
         </p>
         <button
           onClick={handleInitialize}
-          className="mt-16 px-8 py-4 border border-foreground/30 hover:border-foreground/80 hover:bg-foreground/5 transition-all duration-500 font-mono text-xs md:text-sm uppercase tracking-widest pointer-events-auto backdrop-blur-sm"
+          className="px-6 py-3 border border-foreground/30 hover:border-foreground/80 hover:bg-foreground/5 transition-all duration-500 font-mono text-xs uppercase tracking-widest pointer-events-auto backdrop-blur-sm"
           aria-label="Scroll to next section"
         >
           Initialize
         </button>
-      </div>
-
-      {/* Sparse metadata */}
-      <div className="absolute bottom-8 left-8 z-10 font-mono text-xs uppercase tracking-widest text-foreground/50 pointer-events-none hidden md:block">
-        00 / Index
-      </div>
-      <div className="absolute bottom-8 right-8 z-10 font-mono text-xs uppercase tracking-widest text-foreground/50 pointer-events-none hidden md:block flex gap-2 items-center">
-        <span className="w-2 h-2 rounded-full bg-accent animate-pulse inline-block mr-2"></span>
-        Available for work
       </div>
     </section>
   );

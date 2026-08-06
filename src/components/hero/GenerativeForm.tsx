@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Icosahedron, MeshDistortMaterial } from "@react-three/drei";
+import { Sphere, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -47,16 +47,16 @@ export default function GenerativeForm() {
   });
 
   return (
-    <Icosahedron ref={meshRef} args={[2, 32]}>
+    <Sphere ref={meshRef} args={[2.5, 128, 128]}>
       <MeshDistortMaterial
         ref={materialRef}
         color="#F2F0EA"
         wireframe
-        distort={prefersReducedMotion ? 0 : 0.3}
-        speed={prefersReducedMotion ? 0 : 1.5}
+        distort={prefersReducedMotion ? 0 : 0.4}
+        speed={prefersReducedMotion ? 0 : 1}
         transparent
-        opacity={0.15}
+        opacity={0.05}
       />
-    </Icosahedron>
+    </Sphere>
   );
 }
