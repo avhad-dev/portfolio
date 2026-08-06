@@ -25,4 +25,6 @@ Setup and development commands will be added after the application stack is sele
 
 ## License
 
-No license has been selected yet.
+The source code is licensed under the [MIT License](./LICENSE).
+
+Personal content, portfolio copy, branding, images, and other creative assets are not covered by the MIT License and remain all rights reserved unless stated otherwise.
