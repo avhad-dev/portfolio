@@ -8,15 +8,20 @@ This project is in the initial planning and setup phase.
 
 ## Prerequisites
 
-- Nix with flakes enabled
-- Node.js 22
-- npm 10
-
-A project development shell will be provided through `flake.nix`.
+Install Nix and enable the `nix-command` and `flakes` experimental features.
+Node.js and npm do not need to be installed globally.
 
 ## Getting started
 
-Setup and development commands will be added after the application stack is selected.
+Enter the reproducible development shell:
+
+```sh
+nix develop
+```
+
+The shell defined in [`flake.nix`](./flake.nix) provides Node.js 22, npm, and Git.
+[`flake.lock`](./flake.lock) pins the Nix dependencies for reproducible environments.
+Application setup and development commands will be added after the stack is selected.
 
 ## Project documentation
 
