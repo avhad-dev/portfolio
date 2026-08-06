@@ -1,5 +1,6 @@
 import HeroScene from "@/components/hero/HeroScene";
 import AboutSection from "@/components/about/AboutSection";
+import WorkSection from "@/components/work/WorkSection";
 
 export default function Home() {
   return (
@@ -11,24 +12,7 @@ export default function Home() {
       <AboutSection />
 
       {/* 3. Selected work — distortion gallery */}
-      <section className="py-32 px-8 md:px-24 border-t border-foreground/10">
-        <div className="max-w-6xl mx-auto">
-          <p className="font-mono text-sm mb-16 uppercase tracking-widest text-foreground/60">01 / Selected Work</p>
-          <div className="space-y-4">
-            {/* Project Row Placeholder */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-foreground/10 hover:border-foreground/30 transition-colors cursor-pointer">
-                <h3 className="text-3xl md:text-5xl font-serif group-hover:italic transition-all">Project {i}</h3>
-                <div className="flex items-center gap-8 mt-4 md:mt-0 font-mono text-sm text-foreground/60">
-                  <span>202{i}</span>
-                  <span>Frontend</span>
-                  <span className="hidden md:inline-block">React, TypeScript, WebGL</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WorkSection />
 
       {/* 4. Technical arsenal */}
       <section className="py-32 overflow-hidden border-t border-foreground/10">
