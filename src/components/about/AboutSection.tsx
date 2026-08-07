@@ -23,11 +23,11 @@ export default function AboutSection() {
     offset: ["start end", "end start"],
   });
 
-  // Map scroll progress to horizontal translation
-  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
-  const x2 = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
-  const x3 = useTransform(scrollYProgress, [0, 1], ["5%", "-25%"]);
-  const x4 = useTransform(scrollYProgress, [0, 1], ["-25%", "5%"]);
+  // Map scroll progress to horizontal translation (reduced ranges to prevent clipping)
+  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const x2 = useTransform(scrollYProgress, [0, 1], ["-15%", "0%"]);
+  const x3 = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
+  const x4 = useTransform(scrollYProgress, [0, 1], ["-10%", "5%"]);
 
   const transforms = [x1, x2, x3, x4];
 
@@ -54,10 +54,10 @@ export default function AboutSection() {
         
         {/* Section Context & Summary */}
         <div className="absolute top-32 left-8 md:left-24 z-10 max-w-sm">
-          <p className="font-mono text-xs uppercase tracking-widest text-foreground/50 mb-6">
+          <p className="font-mono text-sm uppercase tracking-widest text-foreground/60 mb-6">
             01 / Profile
           </p>
-          <p className="font-mono text-xs uppercase tracking-widest text-foreground/50 leading-relaxed">
+          <p className="font-mono text-base uppercase tracking-widest text-foreground/80 leading-relaxed">
             Four-plus years building backend and data-intensive systems
             where correctness, throughput, and recoverability matter.
           </p>
@@ -74,7 +74,7 @@ export default function AboutSection() {
                 skewX: shouldSkew ? skewX : 0,
               }}
             >
-              <h2 className={`text-5xl md:text-6xl lg:text-8xl font-serif tracking-tight ${index % 2 !== 0 ? "text-foreground/40 italic" : "text-foreground"}`}>
+              <h2 className={`text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight ${index % 2 !== 0 ? "text-foreground/40 italic" : "text-foreground"}`}>
                 {statement}
               </h2>
             </motion.div>

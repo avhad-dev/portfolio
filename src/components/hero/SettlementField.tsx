@@ -205,16 +205,17 @@ export default function SettlementField() {
             // Calculate pulse state for color fading (Type 1.0)
             vPulse = 0.0;
             if (aType == 1.0) {
-              // Create traveling pulses along the curve
-              float progress = fract(uTime * 0.3 - aPhase);
-              vPulse = smoothstep(0.9, 1.0, progress) * smoothstep(1.0, 0.9, progress);
+              // Create traveling pulses along the curve, less frequent
+              float progress = fract(uTime * 0.15 - aPhase);
+              // Shorter pulse
+              vPulse = smoothstep(0.95, 0.975, progress) * smoothstep(1.0, 0.975, progress);
             }
 
             vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
             
             // Base point size
-            float pSize = aType == 0.0 ? 1.5 : 2.0;
-            if (vPulse > 0.1) pSize *= 2.0; // Enlarge active pulses
+            float pSize = aType == 0.0 ? 1.5 : 1.2;
+            if (vPulse > 0.1) pSize *= 1.4; // Enlarge active pulses slightly
             
             gl_PointSize = pSize * (10.0 / -mvPosition.z);
             gl_Position = projectionMatrix * mvPosition;
@@ -236,13 +237,13 @@ export default function SettlementField() {
             float alpha = 0.2; // Base core opacity
 
             if (vType == 1.0) {
-              alpha = 0.1; // Faint rail opacity
+              alpha = 0.08; // Faint rail opacity
               if (vPulse > 0.01) {
                 color = mix(uColorCore, uColorActive, vPulse);
-                alpha = mix(0.1, 0.8, vPulse);
+                alpha = mix(0.08, 0.7, vPulse);
               }
             } else {
-              alpha = smoothstep(0.5, 0.2, dist) * 0.3;
+              alpha = smoothstep(0.5, 0.2, dist) * 0.45; // Increased membrane visibility
             }
 
             gl_FragColor = vec4(color, alpha);

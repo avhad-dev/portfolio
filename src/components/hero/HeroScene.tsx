@@ -34,7 +34,7 @@ export default function HeroScene() {
         <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif tracking-tighter text-foreground drop-shadow-lg leading-[0.9]">
           Software<br />Engineer
         </h1>
-        <p className="mt-8 max-w-sm font-mono text-xs md:text-sm text-foreground/80 leading-relaxed drop-shadow">
+        <p className="mt-8 max-w-sm font-mono text-sm md:text-base text-foreground/90 leading-relaxed drop-shadow">
           Building reliable systems for financial movement,
           decisioning, and high-volume data processing.
         </p>

@@ -64,7 +64,7 @@ function MarqueeRow({ items, direction = "left", speed = 0.5 }: MarqueeRowProps)
                 key={`${item}-${index}`}
                 aria-hidden={isAriaHidden}
                 tabIndex={!isAriaHidden ? 0 : -1}
-                className="text-5xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter text-foreground/20 [-webkit-text-stroke:1px_rgba(242,240,234,0.5)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
+                className="text-5xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter text-foreground/40 [-webkit-text-stroke:1px_rgba(242,240,234,0.5)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
               >
                 {item}
               </span>
