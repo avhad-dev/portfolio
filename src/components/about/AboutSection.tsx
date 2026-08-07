@@ -23,11 +23,11 @@ export default function AboutSection() {
     offset: ["start end", "end start"],
   });
 
-  // Map scroll progress to horizontal translation (reduced ranges to prevent clipping)
-  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const x2 = useTransform(scrollYProgress, [0, 1], ["-15%", "0%"]);
-  const x3 = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
-  const x4 = useTransform(scrollYProgress, [0, 1], ["-10%", "5%"]);
+  // Map scroll progress to horizontal translation (positive values only to prevent left clipping)
+  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const x2 = useTransform(scrollYProgress, [0, 1], ["10%", "0%"]);
+  const x3 = useTransform(scrollYProgress, [0, 1], ["2%", "12%"]);
+  const x4 = useTransform(scrollYProgress, [0, 1], ["12%", "2%"]);
 
   const transforms = [x1, x2, x3, x4];
 
