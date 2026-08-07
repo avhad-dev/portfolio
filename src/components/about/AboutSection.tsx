@@ -6,10 +6,10 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const statements = [
-  "Write code that does one thing and does it well.",
-  "Expect the output of every system to become the input to another.",
-  "Design for clarity and simplicity above all else.",
-  "Small is beautiful. Build with restraint and precision."
+  "Correctness comes before cleverness.",
+  "Every transaction is a state transition.",
+  "Build for throughput without losing traceability.",
+  "Failure paths deserve first-class design."
 ];
 
 export default function AboutSection() {
@@ -52,13 +52,19 @@ export default function AboutSection() {
       */}
       <div className="md:sticky md:top-0 w-full md:h-screen md:overflow-hidden flex flex-col justify-center py-32 px-8 md:px-0">
         
-        {/* Section Context */}
-        <div className="absolute top-32 left-8 md:left-24 font-mono text-xs uppercase tracking-widest text-foreground/50 z-10">
-          01 / Philosophy
+        {/* Section Context & Summary */}
+        <div className="absolute top-32 left-8 md:left-24 z-10 max-w-sm">
+          <p className="font-mono text-xs uppercase tracking-widest text-foreground/50 mb-6">
+            01 / Profile
+          </p>
+          <p className="font-mono text-xs uppercase tracking-widest text-foreground/50 leading-relaxed">
+            Four-plus years building backend and data-intensive systems
+            where correctness, throughput, and recoverability matter.
+          </p>
         </div>
 
         {/* Desktop Layout (Parallax Horizontal Scroll) */}
-        <div className="hidden md:flex flex-col justify-center gap-8 lg:gap-16 w-full h-full overflow-hidden will-change-transform">
+        <div className="hidden md:flex flex-col justify-center gap-8 lg:gap-16 w-full h-full overflow-hidden will-change-transform mt-24">
           {statements.map((statement, index) => (
             <motion.div
               key={index}

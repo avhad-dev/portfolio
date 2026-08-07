@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { motion, useAnimationFrame, useMotionValue, useTransform, useInView } from "motion/react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const technologies = ["TypeScript", "React", "Next.js", "WebGL", "Three.js", "Node.js", "TailwindCSS"];
-const concepts = ["Creative Engineering", "Systems Design", "Performance", "Accessibility", "Interaction", "Motion Choreography"];
+const technologies = ["Java", "Python", "SQL", "Spring", "Jakarta EE", "Oracle", "Snowflake", "Docker"];
+const concepts = ["Transaction Processing", "Data Modeling", "ETL", "Schema Design", "Batch Processing", "Real-Time Processing", "Concurrency", "Performance Engineering", "Distributed Systems"];
 
 interface MarqueeRowProps {
   items: string[];
@@ -64,7 +64,7 @@ function MarqueeRow({ items, direction = "left", speed = 0.5 }: MarqueeRowProps)
                 key={`${item}-${index}`}
                 aria-hidden={isAriaHidden}
                 tabIndex={!isAriaHidden ? 0 : -1}
-                className="text-5xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(242,240,234,0.5)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
+                className="text-5xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter text-foreground/20 [-webkit-text-stroke:1px_rgba(242,240,234,0.5)] hover:text-foreground hover:[-webkit-text-stroke:transparent] focus:text-foreground focus:[-webkit-text-stroke:transparent] transition-all duration-300 cursor-default focus:outline-none"
               >
                 {item}
               </span>

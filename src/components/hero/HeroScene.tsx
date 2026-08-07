@@ -1,12 +1,10 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useLenis } from "lenis/react";
 
 // Dynamically import the heavy WebGL component (as per DESIGN.md constraints)
-const GenerativeForm = dynamic(() => import("./GenerativeForm"), {
+const WebGLScene = dynamic(() => import("./WebGLScene"), {
   ssr: false,
 });
 
@@ -28,35 +26,30 @@ export default function HeroScene() {
 
       {/* WebGL Canvas Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
-          {/* Add lighting so the MeshPhysicalMaterial (MeshDistortMaterial) can be seen */}
-          <ambientLight intensity={2} />
-          <directionalLight position={[10, 10, 5]} intensity={4} color="#F2F0EA" />
-          <directionalLight position={[-10, -10, -5]} intensity={1} color="#F2F0EA" />
-          
-          <Suspense fallback={null}>
-            <GenerativeForm />
-          </Suspense>
-        </Canvas>
+        <WebGLScene />
       </div>
 
       {/* Editorial Overlay - Asymmetrical */}
       <div className="z-10 absolute bottom-16 md:bottom-24 left-8 md:left-24 max-w-2xl pointer-events-none">
         <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif tracking-tighter text-foreground drop-shadow-lg leading-[0.9]">
-          Software<br />Developer
+          Software<br />Engineer
         </h1>
+        <p className="mt-8 max-w-sm font-mono text-xs md:text-sm text-foreground/80 leading-relaxed drop-shadow">
+          Building reliable systems for financial movement,
+          decisioning, and high-volume data processing.
+        </p>
       </div>
 
       <div className="z-10 absolute bottom-16 md:bottom-24 right-8 md:right-24 flex flex-col items-end gap-6 text-right pointer-events-none">
         <p className="font-mono text-xs md:text-sm uppercase tracking-[0.3em] text-foreground/80 drop-shadow">
-          Creative Engineering
+          Transaction Systems / Data Engineering
         </p>
         <button
           onClick={handleInitialize}
           className="px-6 py-3 border border-foreground/30 hover:border-foreground/80 hover:bg-foreground/5 transition-all duration-500 font-mono text-xs uppercase tracking-widest pointer-events-auto backdrop-blur-sm"
           aria-label="Scroll to next section"
         >
-          Initialize
+          Explore systems
         </button>
       </div>
     </section>

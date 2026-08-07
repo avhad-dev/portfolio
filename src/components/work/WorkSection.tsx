@@ -1,169 +1,85 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useSpring, useMotionValue, useTransform } from "motion/react";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useState } from "react";
 
-const projects = [
+const systems = [
   { 
     id: 1, 
-    name: "Project Alpha", 
-    year: "2023", 
-    role: "Frontend", 
-    tech: "React, WebGL", 
-    color: "from-zinc-700 to-zinc-900" 
+    name: "Decision Systems", 
+    desc: "Context-aware decisioning for selecting appropriate transaction routes from user, banking, currency, and regulatory inputs.",
+    diagram: "[ DECISION TREE ]"
   },
   { 
     id: 2, 
-    name: "System Beta", 
-    year: "2022", 
-    role: "Fullstack", 
-    tech: "Next.js, Node", 
-    color: "from-slate-700 to-slate-900" 
+    name: "Concurrent Processing", 
+    desc: "Modernizing sequential financial workflows into concurrent pipelines with an emphasis on latency, availability, and safe processing.",
+    diagram: "[ CONCURRENT PIPELINE ]"
   },
   { 
     id: 3, 
-    name: "Nexus Core", 
-    year: "2021", 
-    role: "Design Engineering", 
-    tech: "Framer Motion, CSS", 
-    color: "from-neutral-700 to-neutral-900" 
+    name: "Financial Messaging", 
+    desc: "Extracting, modeling, and classifying standards-based financial messages for downstream validation and risk workflows.",
+    diagram: "[ MESSAGE SCHEMA ]"
+  },
+  { 
+    id: 4, 
+    name: "Rules and Cutoffs", 
+    desc: "Configuration-driven processing for transaction rules, bank metadata, regional constraints, and time-zone-sensitive cutoffs.",
+    diagram: "[ RULES GRAPH ]"
+  },
+  { 
+    id: 5, 
+    name: "Data Workflow Automation", 
+    desc: "Automated validation and performance testing for ingestion, transformation, and integration workflows.",
+    diagram: "[ THROUGHPUT TIMELINE ]"
   },
 ];
 
 export default function WorkSection() {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const prefersReducedMotion = useReducedMotion();
-
-  // Mouse tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  // Calculate velocity for distortion
-  const velocityX = useMotionValue(0);
-  const velocityY = useMotionValue(0);
-  
-  const lastMouseX = useRef(0);
-  const lastMouseY = useRef(0);
-  const lastTime = useRef(0);
-
-  useEffect(() => {
-    if (!isDesktop || prefersReducedMotion) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const now = Date.now();
-      
-      // Initialize on first move
-      if (lastTime.current === 0) {
-        lastTime.current = now;
-        lastMouseX.current = e.clientX;
-        lastMouseY.current = e.clientY;
-      }
-      
-      const dt = Math.max(1, now - lastTime.current);
-      
-      const vx = (e.clientX - lastMouseX.current) / dt;
-      const vy = (e.clientY - lastMouseY.current) / dt;
-      
-      velocityX.set(vx);
-      velocityY.set(vy);
-
-      lastMouseX.current = e.clientX;
-      lastMouseY.current = e.clientY;
-      lastTime.current = now;
-
-      // Center the image on the cursor (assuming image is 300x400)
-      mouseX.set(e.clientX - 150);
-      mouseY.set(e.clientY - 200);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isDesktop, prefersReducedMotion, mouseX, mouseY, velocityX, velocityY]);
-
-  // Map velocity to distortion scale
-  const smoothVx = useSpring(velocityX, { damping: 50, stiffness: 400 });
-  const smoothVy = useSpring(velocityY, { damping: 50, stiffness: 400 });
-  
-  const scaleX = useTransform(smoothVx, [-5, 5], [1.1, 0.9]);
-  const scaleY = useTransform(smoothVy, [-5, 5], [1.1, 0.9]);
+  const [hoveredSystem, setHoveredSystem] = useState<number | null>(null);
 
   return (
-    <section className="relative py-32 px-8 md:px-24 border-t border-foreground/10">
+    <section id="work" className="relative py-32 px-8 md:px-24 border-t border-foreground/10">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 md:mb-32 gap-8">
           <div>
-            <p className="font-mono text-xs mb-6 uppercase tracking-widest text-foreground/50">02 / Selected Work</p>
+            <p className="font-mono text-xs mb-6 uppercase tracking-widest text-foreground/50">02 / Selected Systems</p>
             <h2 className="text-5xl md:text-7xl font-serif tracking-tighter text-foreground">
-              Proof of Concept
+              Engineering Depth
             </h2>
           </div>
           <p className="max-w-sm font-mono text-xs uppercase tracking-widest text-foreground/50 leading-relaxed text-left md:text-right">
-            Selected case studies demonstrating creative engineering and precise technical execution.
+            Anonymized capability studies derived from backend data engineering and financial transaction environments.
           </p>
         </div>
         
         <div className="border-b border-foreground/10">
-          {projects.map((project) => (
+          {systems.map((system) => (
             <div 
-              key={project.id} 
-              className="group flex flex-col lg:flex-row lg:items-baseline justify-between py-12 md:py-16 border-t border-foreground/10 hover:border-foreground/40 transition-colors cursor-pointer"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-              // For accessibility, showing inline on focus
+              key={system.id} 
+              className="group flex flex-col py-12 md:py-16 border-t border-foreground/10 hover:border-foreground/40 transition-colors focus:outline-none focus:bg-foreground/5"
+              onMouseEnter={() => setHoveredSystem(system.id)}
+              onMouseLeave={() => setHoveredSystem(null)}
               tabIndex={0}
             >
-              <h3 className="text-4xl md:text-6xl font-serif tracking-tight group-hover:italic transition-all duration-300 mb-6 lg:mb-0">
-                {project.name}
-              </h3>
-              
-              <div className="flex flex-wrap items-center gap-6 md:gap-12 font-mono text-xs md:text-sm uppercase tracking-widest text-foreground/50">
-                <span>{project.role}</span>
-                <span className="hidden md:inline-block">{project.tech}</span>
-                <span>{project.year}</span>
+              <div className="flex flex-col lg:flex-row lg:items-baseline justify-between w-full">
+                <h3 className="text-4xl md:text-6xl font-serif tracking-tight group-hover:italic transition-all duration-300 mb-6 lg:mb-0">
+                  {system.name}
+                </h3>
+                
+                <div className="font-mono text-xs md:text-sm uppercase tracking-widest text-foreground/50 lg:text-right max-w-md leading-relaxed">
+                  {system.desc}
+                </div>
               </div>
 
-              {/* Mobile/Touch Inline Image (hidden on desktop hover) */}
-              <div className="md:hidden mt-8 w-full h-48 rounded bg-gradient-to-br opacity-50 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center font-mono text-xs uppercase tracking-widest text-white mix-blend-difference" />
+              {/* Inline Abstract Diagram */}
+              <div className={`mt-8 w-full h-32 md:h-48 rounded border border-foreground/10 flex items-center justify-center font-mono text-xs uppercase tracking-widest text-foreground/40 transition-all duration-500 overflow-hidden relative bg-foreground/5 ${hoveredSystem === system.id ? 'opacity-100 h-48' : 'opacity-50 h-32'} group-focus:opacity-100 group-focus:h-48`}>
+                {system.diagram}
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Desktop Floating Cursor Image Reveal */}
-      {isDesktop && !prefersReducedMotion && (
-        <motion.div
-          className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 overflow-hidden mix-blend-difference"
-          style={{
-            x: smoothX,
-            y: smoothY,
-            scaleX,
-            scaleY,
-            opacity: hoveredProject ? 1 : 0,
-          }}
-          transition={{ opacity: { duration: 0.3 } }}
-        >
-          {projects.map((project) => (
-            <div
-              key={`img-${project.id}`}
-              className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-opacity duration-300 ${
-                hoveredProject === project.id ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <div className="w-full h-full flex items-center justify-center font-mono text-sm uppercase tracking-widest text-white/50 border border-white/20">
-                [Project Image]
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      )}
     </section>
   );
 }
