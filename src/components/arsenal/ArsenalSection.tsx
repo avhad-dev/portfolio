@@ -78,7 +78,7 @@ function MarqueeRow({ items, direction = "left", speed = 0.5 }: MarqueeRowProps)
 
 export default function ArsenalSection() {
   return (
-    <section className="py-32 overflow-hidden border-t border-foreground/10 bg-background">
+    <section id="stack" className="py-32 overflow-hidden border-t border-foreground/10 bg-background">
       <div className="max-w-6xl mx-auto px-8 md:px-24 mb-16">
         <p className="font-mono text-xs uppercase tracking-widest text-foreground/50">03 / Technical Arsenal</p>
       </div>
